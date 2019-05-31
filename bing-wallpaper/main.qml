@@ -4,6 +4,7 @@ import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.3
 import QtQuick.Controls.Material 2.0
 import QtQuick.Dialogs 1.3
+import fileio 0.1
 
 import "region.js" as Region
 import "image-source.js" as ImageSource
@@ -84,10 +85,13 @@ Window {
                 anchors.centerIn: parent
 
                 Button {
+                    FileIO {
+                        id: fileioHandle
+                    }
                     text: "Download"
                     onClicked: {
                         text = "Downloading"
-                        FileIO.download(modelData.url, modelData.title,
+                        fileioHandle.download(modelData.url, modelData.title,
                                         () => {
                                             text = "Done"
                                             enabled = false

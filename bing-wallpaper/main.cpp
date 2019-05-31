@@ -12,9 +12,7 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-    FileIO io;
-    engine.rootContext()->setContextProperty("FileIO", &io);
-
+    qmlRegisterType<FileIO>("fileio", 0, 1, "FileIO");
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {

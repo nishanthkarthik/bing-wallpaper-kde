@@ -12,11 +12,13 @@ FileIO::FileIO(QObject *parent) : QObject(parent)
                 this,
                 &FileIO::saveFile
     );
+    QDebug(QtMsgType::QtInfoMsg) << "Construct";
 }
 
 FileIO::~FileIO()
 {
     delete manager;
+    QDebug(QtMsgType::QtInfoMsg) << "Destruct";
 }
 
 void FileIO::download(QString url, QString title, QJSValue callback)
