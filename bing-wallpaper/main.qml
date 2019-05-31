@@ -3,6 +3,7 @@ import QtQuick.Window 2.12
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.3
 import QtQuick.Controls.Material 2.0
+import QtQuick.Dialogs 1.3
 
 import "region.js" as Region
 import "image-source.js" as ImageSource
@@ -35,7 +36,7 @@ Window {
         }
 
         Button {
-            text: 'Fetch'
+            text: 'Get'
             onClicked: ImageSource.getModel(currentRegion, setRenderableUrls)
 
             function setRenderableUrls(value) {
@@ -83,11 +84,15 @@ Window {
                 anchors.centerIn: parent
 
                 Button {
-                    text: "Apply"
-                }
-
-                Button {
                     text: "Download"
+                    onClicked: {
+                        text = "Downloading"
+                        FileIO.download(modelData.url, modelData.title,
+                                        () => {
+                                            text = "Done"
+                                            enabled = false
+                                        })
+                    }
                 }
             }
         }

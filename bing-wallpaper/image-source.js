@@ -36,3 +36,4 @@ function httpGET(url, callback) {
     xmlhttp.open('GET', url, true)
     xmlhttp.send()
 }
+
